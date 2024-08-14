@@ -101,10 +101,11 @@ const games = [
 ];
 export default function HomeScreens() {
   const [activeCategory, setActiveCategory] = React.useState('Action');
+  const [selectedGaame, setSelectedGame] = React.useState(null);
   return (
     <LinearGradient
       className="w-full flex-1"
-      colors={['rgba(58,131, 244,0.4)', 'rgba(9,181,211,0.4)']}>
+      colors={['rgba(216,61,219,0.4)', 'rgba(0,212,255,0.4)']}>
       <SafeAreaView>
         <View className="container">
           <View className="flex-row justify-between items-center px-4">
@@ -176,10 +177,16 @@ export default function HomeScreens() {
               style={{height: 320}}
               showsVerticalScrollIndicator={false}>
               {games.map((item, index) => {
+                let bg =
+                  item.id == selectedGaame
+                    ? 'rgba(255,255,255,0.4)'
+                    : 'transparent';
                 return (
                   <TouchableOpacity
+                    style={{backgroundColor: bg}}
+                    onPress={() => setSelectedGame(item.id)}
                     key={index}
-                    className="flex-row mx-4 p-2 mb-2">
+                    className="flex-row mx-4 p-2 mb-2 rounded-3xl">
                     <Image
                       source={item.image}
                       className="w-20 h-20 rounded-2xl"
